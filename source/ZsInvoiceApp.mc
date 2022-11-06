@@ -2,7 +2,7 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
-class ZsBarcodeApp extends Application.AppBase {
+class ZsInvoiceApp extends Application.AppBase {
   var barcodeView;
   function initialize() {
     AppBase.initialize();
@@ -17,7 +17,7 @@ class ZsBarcodeApp extends Application.AppBase {
   // Return the initial view of your application here
   function getInitialView() as Array<Views or InputDelegates>? {
     return (
-      [new ZsBarcodeView(), new ZsBarcodeDelegate()] as
+      [new ZsInvoiceView(), new ZsInvoiceDelegate()] as
       Array<Views or InputDelegates>
     );
   }
@@ -28,6 +28,6 @@ class ZsBarcodeApp extends Application.AppBase {
   }
 }
 
-function getApp() as ZsBarcodeApp {
-  return Application.getApp() as ZsBarcodeApp;
+function getApp() as ZsInvoiceApp {
+  return Application.getApp() as ZsInvoiceApp;
 }

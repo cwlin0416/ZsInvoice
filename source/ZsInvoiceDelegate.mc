@@ -2,7 +2,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 using Toybox.Timer;
 
-class ZsBarcodeDelegate extends WatchUi.BehaviorDelegate {
+class ZsInvoiceDelegate extends WatchUi.BehaviorDelegate {
   var isBackLightOn = false;
   function initialize() {
     BehaviorDelegate.initialize();
@@ -12,7 +12,7 @@ class ZsBarcodeDelegate extends WatchUi.BehaviorDelegate {
     System.println("onMenu");
     WatchUi.pushView(
       new Rez.Menus.MainMenu(),
-      new ZsBarcodeMenuDelegate(),
+      new ZsInvoiceMenuDelegate(),
       WatchUi.SLIDE_UP
     );
     return true;

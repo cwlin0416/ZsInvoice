@@ -2,7 +2,7 @@ import Toybox.Graphics;
 import Toybox.WatchUi;
 using Toybox.Timer;
 
-class ZsBarcodeView extends WatchUi.View {
+class ZsInvoiceView extends WatchUi.View {
   function initialize() {
     View.initialize();
   }

@@ -2,7 +2,7 @@ import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;
 
-class ZsBarcodeMenuDelegate extends WatchUi.MenuInputDelegate {
+class ZsInvoiceMenuDelegate extends WatchUi.MenuInputDelegate {
   function initialize() {
     MenuInputDelegate.initialize();
   }
