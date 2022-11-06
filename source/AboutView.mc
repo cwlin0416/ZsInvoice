@@ -24,7 +24,7 @@ class AboutView extends WatchUi.View {
     );
     dc.drawBitmap(
       (dc.getWidth() - icon.getWidth()) / 2,
-      (dc.getHeight() - icon.getHeight()) / 2 - 35,
+      (dc.getHeight() - icon.getHeight()) / 2 - dc.getHeight()*0.4 + 10,
       icon
     );
   }
