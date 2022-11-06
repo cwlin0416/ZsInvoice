@@ -1,0 +1,6 @@
+<layout id="MainLayout">
+    <label x="5" y="15%" text="@Strings.title" color="Graphics.COLOR_WHITE" font="Graphics.FONT_XTINY" justification="Graphics.TEXT_JUSTIFY_LEFT" />
+    <drawable id="barcode_drawable" class="CustomBarcodeDrawable">
+        <param name="paddingTop">20</param>
+    </drawable>
+</layout>

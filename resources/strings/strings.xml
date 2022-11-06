@@ -1,0 +1,14 @@
+<strings>
+    <string id="AppName">E-Invoice Carrier</string>
+
+    <string id="title">E-Invoice Carrier</string>
+    <string id="prompt">Press menu button to set</string>
+
+    <string id="menuTitle">ZsInvoice</string>
+    <string id="menuLabelSetting">Setting</string>
+    <string id="menuLabelAbout">About</string>
+
+    <string id="AppVersionTitle">Version</string>
+    <string id="InvoiceBarcodeTitle">Invoice Carrier Code</string>
+    <string id="InvoiceBarcodePrompt">E-Invoice Carrier</string>
+</strings>

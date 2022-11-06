@@ -1,0 +1,14 @@
+<strings>
+    <string id="AppName">電子發票載具</string>
+
+    <string id="title">發票載具條碼</string>
+    <string id="prompt">按下 MENU 來設定</string>
+
+    <string id="menuTitle">ZsInvoice</string>
+    <string id="menuLabelSetting">設定</string>
+    <string id="menuLabelAbout">關於</string>
+
+    <string id="AppVersionTitle">版本</string>
+    <string id="InvoiceBarcodeTitle">發票手機條碼</string>
+    <string id="InvoiceBarcodePrompt">電子發票手機條碼</string>
+</strings>

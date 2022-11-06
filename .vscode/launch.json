@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Run App",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "",
+        }
+    ]
+}
