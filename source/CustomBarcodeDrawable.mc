@@ -66,7 +66,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     barcode = Application.Properties.getValue("invoiceBarcode");
     var barcodeChars = barcode.toUpper().toCharArray();
     barcodes = new [0]; // build you data array
-    barcodes.add("100101101101"); // Code 39 barcodes start with a *
+    barcodes.add(charMap['*']); // Code 39 barcodes start with a *
     for (var i = 0; i < barcodeChars.size(); i++) {
       var result = charMap[barcodeChars[i]]; //<-- look up for each character
       // System.print(barcodeChars[i]);
@@ -76,7 +76,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
         barcodes.add(result);
       }
     }
-    barcodes.add("100101101101"); // Code 39 barcodes end with a *
+    barcodes.add(charMap['*']); // Code 39 barcodes end with a *
   }
 
   function draw(dc as Dc) as Void {
