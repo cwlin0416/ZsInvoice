@@ -2,7 +2,7 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 
 class CustomBarcodeDrawable extends WatchUi.Drawable {
-  var barcode = "/2J4.6Q2";
+  var barcode = "/ABC.123";
   var maxLength = 8;
   var charMap = {
     // map each character to it's pattern

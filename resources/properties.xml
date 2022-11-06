@@ -1,4 +1,4 @@
 <properties>
     <property id="appVersion" type="string">1.0.0</property>
-    <property id="invoiceBarcode" type="string">/2J4.6Q2</property>
+    <property id="invoiceBarcode" type="string">/ABC.123</property>
 </properties>
