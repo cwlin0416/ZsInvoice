@@ -1,10 +1,88 @@
 {
     "configurations": [
         {
-            "name": "Run App",
+            "name": "Run App at epix2",
             "request": "launch",
             "type": "monkeyc",
-            "device": "",
-        }
+            "device": "epix2",
+        },
+        {
+            "name": "Run App at fenix7x",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fenix7x",
+        },
+        {
+            "name": "Run App at fenix7",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fenix7",
+        },
+        {
+            "name": "Run App at fenix7s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fenix7s",
+        },
+        {
+            "name": "Run App at descentmk2",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "descentmk2",
+        },
+        {
+            "name": "Run App at descentmk2s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "descentmk2s",
+        },
+        {
+            "name": "Run App at instinct2",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "instinct2",
+        },
+        {
+            "name": "Run App at instinct2s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "instinct2s",
+        },
+        {
+            "name": "Run App at vivoactive4",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "vivoactive4",
+        },
+        {
+            "name": "Run App at vivoactive4s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "vivoactive4s",
+        },
+        {
+            "name": "Run App at venusq2",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venusq2",
+        },
+        {
+            "name": "Run App at venusq2m",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venusq2m",
+        },
+        {
+            "name": "Run App at venu2",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venu2",
+        },
+        {
+            "name": "Run App at venu2s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venu2s",
+        },
     ]
 }
