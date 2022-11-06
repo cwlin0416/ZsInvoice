@@ -11,11 +11,14 @@ class ZsInvoiceMenuDelegate extends WatchUi.MenuInputDelegate {
     if (item == :item_setting) {
       System.println("Setting Invoice Code");
       if (WatchUi has :TextPicker) {
+        System.println("This device support TextPicker.");
         WatchUi.pushView(
           new SetBarcodeTextPicker(),
           new SetBarcodeTextPickerDelegate(),
           WatchUi.SLIDE_DOWN
         );
+      } else {
+        System.println("This device not support TextPicker.");
       }
     } else if (item == :item_about) {
       System.println("Show about");
