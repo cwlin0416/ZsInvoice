@@ -21,8 +21,10 @@ class ZsInvoiceApp extends Application.AppBase {
 
   // Return the initial view of your application here
   function getInitialView() as Array<Views or InputDelegates>? {
+    var view = new ZsInvoiceView();
+    var delegate = new ZsInvoiceDelegate(view); 
     return (
-      [new ZsInvoiceView(), new ZsInvoiceDelegate()] as
+      [view, delegate] as
       Array<Views or InputDelegates>
     );
   }
