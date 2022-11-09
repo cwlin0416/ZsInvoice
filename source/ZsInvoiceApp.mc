@@ -14,6 +14,11 @@ class ZsInvoiceApp extends Application.AppBase {
   // onStop() is called when your application is exiting
   function onStop(state as Dictionary?) as Void {}
 
+  function onSettingsChanged() {
+    System.println("onSettingsChanged");
+    WatchUi.requestUpdate(); // update the view to reflect changes
+  }
+
   // Return the initial view of your application here
   function getInitialView() as Array<Views or InputDelegates>? {
     return (
@@ -22,9 +27,11 @@ class ZsInvoiceApp extends Application.AppBase {
     );
   }
 
-  function onSettingsChanged() {
-    System.println("onSettingsChanged");
-    WatchUi.requestUpdate(); // update the view to reflect changes
+  function getGlanceView() {
+    return (
+      [new ZsInvoiceGlanceView(), new ZsInvoiceGlanceViewDelegate()] as
+      Array<GlanceView or GlanceViewDelegate>
+    );
   }
 }
 
