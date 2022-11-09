@@ -29,4 +29,12 @@ class ZsInvoiceDelegate extends WatchUi.BehaviorDelegate {
     System.println("onKey: " + keyEvent.getKey()); // e.g. KEY_MENU = 7
     return false;
   }
+
+  function onTap(clickEvent as ClickEvent) {
+    System.println("onTap");
+    // System.println(clickEvent.getCoordinates());
+    // System.println(clickEvent.getType());
+    ziView.tuneOnBacklight();
+    return true;
+  }
 }
