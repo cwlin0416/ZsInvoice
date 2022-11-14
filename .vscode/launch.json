@@ -61,6 +61,12 @@
             "device": "vivoactive4s",
         },
         {
+            "name": "Run App at venusq",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venusq",
+        },
+        {
             "name": "Run App at venusq2",
             "request": "launch",
             "type": "monkeyc",
