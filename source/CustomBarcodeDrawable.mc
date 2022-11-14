@@ -89,7 +89,8 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     // Render barcode
     var barPadding = 20;
     var barUnitWidth = (dc.getWidth() - barPadding) / barcodes.size() / 13;
-    var wideLineWidth = 2; // Default narrow line to wide line is 1:3
+    var narrowLineWidth = 1;
+    var wideLineWidth = 2; // Default narrow line to wide line is 1:2
     var barWidth = barUnitWidth * barcodes.size() * 13;
 
     // If screen size between 1 unit width 1:3 and 2 unit width 1:2 then use 1:3 to increase barcode accuracy.
@@ -136,7 +137,8 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       var lines = barcodes[i].toCharArray();
       for (var j = 0; j < lines.size(); j++) {
         var isBlank = lines[j] == '0';
-        var isWideLine = j + 1 < lines.size() ? lines[j] == lines[j + 1] : false;
+        var isWideLine =
+          j + 1 < lines.size() ? lines[j] == lines[j + 1] : false;
         if (isWideLine) {
           if (!isBlank) {
             dc.fillRectangle(
@@ -150,9 +152,14 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
           j++; // If is wide line then skip next char.
         } else {
           if (!isBlank) {
-            dc.fillRectangle(shift, top, barUnitWidth, barHeight);
+            dc.fillRectangle(
+              shift,
+              top,
+              barUnitWidth * narrowLineWidth,
+              barHeight
+            );
           }
-          shift += barUnitWidth;
+          shift += barUnitWidth * narrowLineWidth;
         }
       }
       shift += barUnitWidth;
