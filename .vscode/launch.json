@@ -49,6 +49,12 @@
             "device": "instinct2s",
         },
         {
+            "name": "Run App at vivoactive3",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "vivoactive3",
+        },
+        {
             "name": "Run App at vivoactive4",
             "request": "launch",
             "type": "monkeyc",
