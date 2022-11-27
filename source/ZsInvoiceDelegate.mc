@@ -21,7 +21,7 @@ class ZsInvoiceDelegate extends WatchUi.BehaviorDelegate {
   }
 
   // Detect Menu button input
-  function onKey(keyEvent) {
+  function onKey(keyEvent as KeyEvent) {
     if (keyEvent.getKey() == KEY_ENTER) {
       ziView.tuneOnBacklight();
       return true;
