@@ -14,12 +14,13 @@ class AboutView extends WatchUi.View {
     View.onUpdate(dc);
 
     var icon = WatchUi.loadResource(Rez.Drawables.LauncherIcon);
+    var ver = WatchUi.loadResource(Rez.Strings.AppVer);
     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
     dc.drawText(
       dc.getWidth() / 2,
       dc.getHeight() / 2 + 20,
       Graphics.FONT_SMALL,
-      Application.Properties.getValue("appVersion"),
+      ver,
       Graphics.TEXT_JUSTIFY_CENTER
     );
     dc.drawBitmap(

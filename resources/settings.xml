@@ -1,9 +1,5 @@
 <settings>
 
-    <setting propertyKey="@Properties.appVersion" title="@Strings.AppVersionTitle">
-        <settingConfig type="alphaNumeric" readonly="true" />
-    </setting>
-
     <setting propertyKey="@Properties.invoiceBarcode" title="@Strings.InvoiceBarcodeTitle" prompt="@Strings.InvoiceBarcodePrompt">
         <settingConfig type="alphaNumeric" required="true" maxLength="8" />
     </setting>
