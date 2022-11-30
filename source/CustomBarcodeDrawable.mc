@@ -79,6 +79,16 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     barcodes.add(charMap['*']); // Code 39 barcodes end with a *
   }
 
+  function calBarWidth(barUnitWidth, barcodeSize, wideLineWidth, extraGap) {
+    var minGap = 1;
+    var narrowLineWidth = 1;
+    var charBarWidth = narrowLineWidth * 6 + wideLineWidth * 3;
+    return barUnitWidth * barcodeSize * (charBarWidth + minGap + extraGap);
+  }
+  function getBarUnitWidth(screenWidth, barcodeSize, wideLineWidth, extraGap) {
+    return screenWidth / calBarWidth(1, barcodeSize, wideLineWidth, extraGap);
+  }
+
   function draw(dc as Dc) as Void {
     System.println("CustomBarcodeDrawable: draw()");
     System.println("Height: " + dc.getHeight());
@@ -86,24 +96,39 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
 
     refreshBarcode();
 
+    // Background Color
+    dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
+    dc.clear();
+
     // Render barcode
     var barPadding = 20;
-    var barUnitWidth = (dc.getWidth() - barPadding) / barcodes.size() / 13;
+    var extraGap = 0;
     var narrowLineWidth = 1;
     var wideLineWidth = 2; // Default narrow line to wide line is 1:2
-    var barWidth = barUnitWidth * barcodes.size() * 13;
+
+    var barUnitWidth = self.getBarUnitWidth((dc.getWidth() - barPadding), barcodes.size(), wideLineWidth, extraGap);
+    var defaultBarWidth = self.calBarWidth(barUnitWidth, barcodes.size(), wideLineWidth, extraGap);
+    var barWidth = defaultBarWidth;
 
     // If screen size between 1 unit width 1:3 and 2 unit width 1:2 then use 1:3 to increase barcode accuracy.
+    var testWideLineWidth = 3;
+    var testExtraGap = 2;
+    var testBarWidth = self.calBarWidth(1, barcodes.size(), testWideLineWidth, testExtraGap);
+    var testMinBarWidth = self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
+    System.println("defaultBarWidth: " + defaultBarWidth);
+    System.println("testBarWidth: " + testBarWidth);
     if (
-      dc.getWidth() >= 1 * 10 * 16 + barPadding &&
-      dc.getWidth() < 2 * 10 * 13 + barPadding
+      dc.getWidth() >= testBarWidth + barPadding &&
+      dc.getWidth() < testMinBarWidth + barPadding
     ) {
-      wideLineWidth = 3;
-      barUnitWidth = (dc.getWidth() - barPadding) / barcodes.size() / 16;
-      barWidth = barUnitWidth * barcodes.size() * 16;
+      wideLineWidth = testWideLineWidth;
+      extraGap = testExtraGap;
+      barUnitWidth = self.getBarUnitWidth((dc.getWidth() - barPadding), barcodes.size(), wideLineWidth, extraGap);
+      barWidth = self.calBarWidth(barUnitWidth, barcodes.size(), wideLineWidth, extraGap);
     }
 
-    var barHeight = Math.round(dc.getHeight() / 4);
+    var barHeight = Math.round(dc.getHeight() / 3.5);
+
     System.println("barUnitWidth: " + barUnitWidth);
     System.println("barWidth: " + barWidth);
     System.println("barcodes Size: " + barcodes.size());
@@ -112,6 +137,14 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     var left = (dc.getWidth() - barWidth) / 2; // Horizontal Center
     var shift = left;
 
+    dc.drawText(
+      dc.getWidth() / 2,
+      top + barHeight + 10,
+      Graphics.FONT_SYSTEM_XTINY,
+      barcode.substring(0, maxLength),
+      Graphics.TEXT_JUSTIFY_CENTER
+    );
+
     dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
     dc.fillRoundedRectangle(
       left - barPadding / 4,
@@ -119,13 +152,6 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       barWidth + barPadding / 2,
       barHeight + barPadding / 2,
       5
-    );
-    dc.drawText(
-      dc.getWidth() / 2,
-      top + barHeight + 10,
-      Graphics.FONT_SYSTEM_XTINY,
-      barcode.substring(0, maxLength),
-      Graphics.TEXT_JUSTIFY_CENTER
     );
     if (dc has :setAntiAlias) {
       dc.setAntiAlias(false);
@@ -162,7 +188,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
           shift += barUnitWidth * narrowLineWidth;
         }
       }
-      shift += barUnitWidth;
+      shift += barUnitWidth + extraGap;
     }
   }
 }
