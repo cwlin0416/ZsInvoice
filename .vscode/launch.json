@@ -55,6 +55,12 @@
             "device": "instinct2s",
         },
         {
+            "name": "Run App at instinctcrossover",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "instinctcrossover",
+        },
+        {
             "name": "Run App at vivoactive3",
             "request": "launch",
             "type": "monkeyc",

@@ -97,6 +97,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     refreshBarcode();
 
     // Background Color
+    //dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
     dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
     dc.clear();
 
@@ -121,6 +122,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       dc.getWidth() >= testBarWidth + barPadding &&
       dc.getWidth() < testMinBarWidth + barPadding
     ) {
+      System.println("Use enchanced barcode");
       wideLineWidth = testWideLineWidth;
       extraGap = testExtraGap;
       barUnitWidth = self.getBarUnitWidth((dc.getWidth() - barPadding), barcodes.size(), wideLineWidth, extraGap);
