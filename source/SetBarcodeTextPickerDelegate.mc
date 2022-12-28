@@ -13,9 +13,11 @@ class SetBarcodeTextPickerDelegate extends WatchUi.TextPickerDelegate {
     if (changed) {
       Application.Properties.setValue("invoiceBarcode", text);
     }
+    return true;
   }
 
   function onCancel() {
     System.println("SetBarcodeTextPickerDelegate: Canceled");
+    return true;
   }
 }

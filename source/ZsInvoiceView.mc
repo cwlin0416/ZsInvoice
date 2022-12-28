@@ -21,11 +21,7 @@ class ZsInvoiceView extends WatchUi.View {
   }
 
   function tuneOnBacklight() {
-    try {
-      Attention.backlight(1.0);
-    } catch (ex instanceof Attention.BacklightOnTooLongException) {
-      System.println(ex.getErrorMessage());
-    }
+    Attention.backlight(1.0);
     System.println("Backlight countdown on");
     isBackLightOn = true;
     myTimer.stop();

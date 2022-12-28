@@ -7,5 +7,6 @@ class AboutDelegate extends WatchUi.BehaviorDelegate {
   }
   function onKey(keyEvent) {
     System.println("AboutDelegate: onKey: " + keyEvent.getKey()); // e.g. KEY_MENU = 7
+    return true;
   }
 }

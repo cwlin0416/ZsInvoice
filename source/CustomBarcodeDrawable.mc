@@ -1,5 +1,6 @@
 import Toybox.WatchUi;
 import Toybox.Graphics;
+import Toybox.Lang;
 
 class CustomBarcodeDrawable extends WatchUi.Drawable {
   var barcode = "/ABC.123";
