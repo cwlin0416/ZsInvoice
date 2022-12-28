@@ -5,7 +5,7 @@ import Toybox.Lang;
 class CustomBarcodeDrawable extends WatchUi.Drawable {
   var barcode = "/ABC.123";
   var maxLength = 8;
-  var charMap = {
+  var charMap as Dictionary<Char, String> = {
     // map each character to it's pattern
     ' ' => "100110101101",
     '$' => "100100100101",
@@ -52,22 +52,26 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     'Y' => "110010110101",
     'Z' => "100110110101",
   };
-  var barcodes = new [0];
-  var paddingTop = 0;
+  var barcodes = new Array<String>[0];
+  var paddingTop = 0 as Number;
 
   function initialize(params as Dictionary) {
     // You should always call the parent's initializer and
     // in this case you should pass the params along as size
     // and location values may be defined.
     Drawable.initialize(params);
-    paddingTop = params.get(:paddingTop) ? params.get(:paddingTop) : 0;
+    var paramPaddingTop = params.get(:paddingTop) as Number;
+    if (paramPaddingTop != null) {
+      paddingTop = paramPaddingTop;
+    }
   }
 
   function refreshBarcode() as Void {
     barcode = Application.Properties.getValue("invoiceBarcode");
     var barcodeChars = barcode.toUpper().toCharArray();
-    barcodes = new [0]; // build you data array
-    barcodes.add(charMap['*']); // Code 39 barcodes start with a *
+    barcodes = new Array<String>[0]; // build you data array
+    var startEndChar = charMap['*'];
+    barcodes.add(startEndChar); // Code 39 barcodes start with a *
     for (var i = 0; i < barcodeChars.size(); i++) {
       var result = charMap[barcodeChars[i]]; //<-- look up for each character
       // System.print(barcodeChars[i]);
@@ -77,7 +81,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
         barcodes.add(result);
       }
     }
-    barcodes.add(charMap['*']); // Code 39 barcodes end with a *
+    barcodes.add(startEndChar); // Code 39 barcodes end with a *
   }
 
   function calBarWidth(barUnitWidth, barcodeSize, wideLineWidth, extraGap) {
@@ -108,15 +112,31 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     var narrowLineWidth = 1;
     var wideLineWidth = 2; // Default narrow line to wide line is 1:2
 
-    var barUnitWidth = self.getBarUnitWidth((dc.getWidth() - barPadding), barcodes.size(), wideLineWidth, extraGap);
-    var defaultBarWidth = self.calBarWidth(barUnitWidth, barcodes.size(), wideLineWidth, extraGap);
+    var barUnitWidth = self.getBarUnitWidth(
+      dc.getWidth() - barPadding,
+      barcodes.size(),
+      wideLineWidth,
+      extraGap
+    );
+    var defaultBarWidth = self.calBarWidth(
+      barUnitWidth,
+      barcodes.size(),
+      wideLineWidth,
+      extraGap
+    );
     var barWidth = defaultBarWidth;
 
     // If screen size between 1 unit width 1:3 and 2 unit width 1:2 then use 1:3 to increase barcode accuracy.
     var testWideLineWidth = 3;
     var testExtraGap = 2;
-    var testBarWidth = self.calBarWidth(1, barcodes.size(), testWideLineWidth, testExtraGap);
-    var testMinBarWidth = self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
+    var testBarWidth = self.calBarWidth(
+      1,
+      barcodes.size(),
+      testWideLineWidth,
+      testExtraGap
+    );
+    var testMinBarWidth =
+      self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
     System.println("defaultBarWidth: " + defaultBarWidth);
     System.println("testBarWidth: " + testBarWidth);
     if (
@@ -126,8 +146,18 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       System.println("Use enchanced barcode");
       wideLineWidth = testWideLineWidth;
       extraGap = testExtraGap;
-      barUnitWidth = self.getBarUnitWidth((dc.getWidth() - barPadding), barcodes.size(), wideLineWidth, extraGap);
-      barWidth = self.calBarWidth(barUnitWidth, barcodes.size(), wideLineWidth, extraGap);
+      barUnitWidth = self.getBarUnitWidth(
+        dc.getWidth() - barPadding,
+        barcodes.size(),
+        wideLineWidth,
+        extraGap
+      );
+      barWidth = self.calBarWidth(
+        barUnitWidth,
+        barcodes.size(),
+        wideLineWidth,
+        extraGap
+      );
     }
 
     var barHeight = Math.round(dc.getHeight() / 3.5);
@@ -163,7 +193,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     System.println("Size: " + barcodes.size());
     for (var i = 0; i < barcodes.size(); i++) {
       // System.println(barcodes[i]);
-      var lines = barcodes[i].toCharArray();
+      var lines = barcodes[i].toCharArray() as Array<Char>;
       for (var j = 0; j < lines.size(); j++) {
         var isBlank = lines[j] == '0';
         var isWideLine =
