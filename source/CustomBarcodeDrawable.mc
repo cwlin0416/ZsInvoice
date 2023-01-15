@@ -67,7 +67,6 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   }
 
   function refreshBarcode() as Void {
-    var barcode;
     if (Application has :Properties) {
       barcode = Application.Properties.getValue("invoiceBarcode");
     } else {
