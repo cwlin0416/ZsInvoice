@@ -11,7 +11,12 @@ class SetBarcodeTextPickerDelegate extends WatchUi.TextPickerDelegate {
     );
 
     if (changed) {
-      Application.Properties.setValue("invoiceBarcode", text);
+      if (Application has :Properties) {
+        Application.Properties.setValue("invoiceBarcode", text);
+      } else {
+        var app = Application.getApp();
+        app.setProperty("invoiceBarcode", text);
+      }
     }
     return true;
   }

@@ -108,5 +108,11 @@
             "type": "monkeyc",
             "device": "venu2s",
         },
+        {
+            "name": "Run App at fr235",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr235",
+        },
     ]
 }

@@ -67,7 +67,13 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   }
 
   function refreshBarcode() as Void {
-    barcode = Application.Properties.getValue("invoiceBarcode");
+    var barcode;
+    if (Application has :Properties) {
+      barcode = Application.Properties.getValue("invoiceBarcode");
+    } else {
+      var app = Application.getApp();
+      barcode = app.getProperty("invoiceBarcode");
+    }
     var barcodeChars = barcode.toUpper().toCharArray();
     barcodes = new Array<String>[0]; // build you data array
     var startEndChar = charMap['*'];
