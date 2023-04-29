@@ -114,5 +114,23 @@
             "type": "monkeyc",
             "device": "fr235",
         },
+        {
+            "name": "Run App at fr265",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr265",
+        },
+        {
+            "name": "Run App at fr265s",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr265s",
+        },
+        {
+            "name": "Run App at fr965",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr965",
+        },
     ]
 }
