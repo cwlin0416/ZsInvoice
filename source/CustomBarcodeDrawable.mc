@@ -81,23 +81,27 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       paddingTop = paramPaddingTop;
     }
     screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
-    screenSizes.add(new ScreenSizeMap(160, 259, 160, 3, 1));
+    screenSizes.add(new ScreenSizeMap(160, 189, 160, 3, 1));
+    screenSizes.add(new ScreenSizeMap(190, 259, 190, 4, 1));
     screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
     screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
     screenSizes.add(new ScreenSizeMap(320, 349, 320, 6, 2));
-    screenSizes.add(new ScreenSizeMap(350, 419, 350, 7, 2));
+    screenSizes.add(new ScreenSizeMap(350, 379, 350, 7, 2));
+    screenSizes.add(new ScreenSizeMap(380, 419, 380, 8, 2));
     screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
     screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
     screenSizes.add(new ScreenSizeMap(480, 509, 480, 9, 3));
     screenSizes.add(new ScreenSizeMap(510, 539, 510, 10, 3));
-    screenSizes.add(new ScreenSizeMap(540, 579, 540, 11, 3));
+    screenSizes.add(new ScreenSizeMap(540, 569, 540, 11, 3));
+    screenSizes.add(new ScreenSizeMap(570, 579, 570, 12, 3));
     screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
     screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
     screenSizes.add(new ScreenSizeMap(640, 669, 640, 12, 4));
     screenSizes.add(new ScreenSizeMap(670, 699, 670, 13, 4));
     screenSizes.add(new ScreenSizeMap(700, 729, 700, 14, 4));
     screenSizes.add(new ScreenSizeMap(730, 739, 730, 15, 4));
-    screenSizes.add(new ScreenSizeMap(740, 769, 740, 13, 5));
+    screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
+    screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
     screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
     screenSizes.add(new ScreenSizeMap(800, 829, 800, 15, 5));
     screenSizes.add(new ScreenSizeMap(830, 859, 830, 16, 5));
@@ -105,7 +109,8 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
     screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
     screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
-    screenSizes.add(new ScreenSizeMap(930, 959, 930, 17, 6));
+    screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
+    screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
     screenSizes.add(new ScreenSizeMap(960, 989, 960, 18, 6));
     screenSizes.add(new ScreenSizeMap(990, 1000, 990, 19, 6));
   }
