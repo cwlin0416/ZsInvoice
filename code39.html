@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Code 39 條碼產生器</title>
+</head>
+
+<body>
+    <h1>Code 39 條碼產生器</h1>
+    <label for="barcode-input">輸入條碼資料:</label>
+    <input type="text" id="barcode-input" placeholder="請輸入條碼資料" value="/2J4.6Q2">
+    <button onclick="generateBarcode()">產生條碼</button>
+    <div id="container"></div>
+
+    <script>
+        function generateBarcode() {
+            let text = document.getElementById("barcode-input").value;
+            text = '*' + text + '*';
+
+            let table = {} // { barCodeWidth: { minWidth: 0, maxWidth: 100, narrowSize: 1, wideSize }}
+            for (let width = 1000; width >= 130; width--) {
+                const found = findFitBarcodeWidth(text, width);
+                console.log("found", found);
+                let minWidth = width;
+                let maxWidth = width;
+                let groupKey = `${found.foundBarcodeWidth}`;
+
+                if (table[groupKey]) {
+                    minWidth = table[groupKey].minWidth;
+                    if (width < minWidth) minWidth = width;
+                    maxWidth = table[groupKey].maxWidth;
+                    if (width > maxWidth) maxWidth = width;
+                }
+
+                table[groupKey] = {
+                    minWidth: minWidth,
+                    maxWidth: maxWidth,
+                    barcodeWidth: found.foundBarcodeWidth,
+                    wideSize: found.foundWideSize,
+                    narrowSize: found.foundNarrowSize,
+                };
+            }
+            console.log("screen barcode width table");
+            console.table(table);
+            Object.entries(table).forEach(([key, values]) => {
+                console.log(`screenSizes.add(new ScreenSizeMap(${values.minWidth}, ${values.maxWidth}, ${values.barcodeWidth}, ${values.wideSize}, ${values.narrowSize}));`)
+                generateCode39Barcode(
+                    text,
+                    document.getElementById("container"),
+                    values.barcodeWidth,
+                );
+            });
+        }
+        function getBarSize(code, wideSize, narrowSize) {
+            if (!wideSize) wideSize = 2;
+            if (!narrowSize) narrowSize = 1;
+            switch (code) {
+                case '0':
+                case '2': return wideSize;
+                case '1':
+                case '3': return narrowSize;
+            }
+        }
+        function getCharBarSize(charBar, wideSize, narrowSize) {
+            let size = 0;
+            for (var i = 0; i < charBar.length; i++) {
+                let charCode = charBar[i];
+                size += getBarSize(charCode, wideSize, narrowSize);
+            }
+            //console.log("charCode: size: ", size);
+            return size;
+        }
+        function getBarcodeWidth(text, wideSize, narrowSize) {
+            const charMap = getCharBarMap();
+            const margin = 0;
+            let barcodeWidth = margin * 2;
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (!charMap[char]) {
+                    throw new Error(`Invalid character ${char} in input text`);
+                }
+                barcodeWidth += getCharBarSize(charMap[char], wideSize, narrowSize) + narrowSize;
+            }
+            return barcodeWidth;
+        }
+        function getCharBarMap() {
+            // 0 Wide-Blank (00)
+            // 1 Narrow Blank (01)
+            // 2 Wide Line (10)
+            // 3 Narrow Line (11)
+            // isLine (binary & 2 == 2 ()
+            return {
+                ' ': "302131213",
+                '$': "303030313",
+                '%': "313030303",
+                '*': "303121213",
+                '+': "303130303",
+                '-': "303131212",
+                '/': "303031303",
+                '.': "203131213",
+                '0': "313021213",
+                '1': "213031312",
+                '2': "312031312",
+                '3': "212031313",
+                '4': "313021312",
+                '5': "213021313",
+                '6': "312021313",
+                '7': "313031212",
+                '8': "213031213",
+                '9': "312031213",
+                'A': "213130312",
+                'B': "312130312",
+                'C': "212130313",
+                'D': "313120312",
+                'E': "213120313",
+                'F': "312120313",
+                'G': "313130212",
+                'H': "213130213",
+                'I': "312130213",
+                'J': "313120213",
+                'K': "213131302",
+                'L': "312131302",
+                'M': "212131303",
+                'N': "313121302",
+                'O': "213121303",
+                'P': "312121303",
+                'Q': "313131202",
+                'R': "213131203",
+                'S': "312131203",
+                'T': "313121203",
+                'U': "203131312",
+                'V': "302131312",
+                'W': "202131313",
+                'X': "303121312",
+                'Y': "203121313",
+                'Z': "302121313",
+            }
+        }
+
+        function findFitBarcodeWidth(text, width) {
+            let results = [];
+            // search narrow bar to wide bar from 1:2 ~ 1:4
+            for (var ratio = 3; ratio <= 4; ratio++) {
+                let foundNarrowSize = 1;
+                let foundWideSize = 2;
+                let foundBarcodeWidth = getBarcodeWidth(text, foundWideSize, foundNarrowSize);
+
+                let tmpNarrowSize = foundNarrowSize;
+                let tmpWideSize = foundWideSize;
+                let tmpBarcodeWidth = foundBarcodeWidth;
+                do {
+                    tmpBarcodeWidth = getBarcodeWidth(text, tmpWideSize, tmpNarrowSize);
+                    if (tmpBarcodeWidth > width) break;
+                    foundBarcodeWidth = tmpBarcodeWidth;
+                    foundNarrowSize = tmpNarrowSize;
+                    foundWideSize = tmpWideSize;
+
+                    // try to add size
+                    tmpWideSize++; // add wide first
+                    if (tmpNarrowSize < (tmpWideSize / ratio)) tmpNarrowSize++; // if narrow:wide below 1:3 then add narrow
+                    //console.log("narrow", tmpNarrowSize, "wide", tmpWideSize);
+                } while (tmpBarcodeWidth < width);
+                // console.log("tmpBarcodeWidth", tmpBarcodeWidth, tmpWideSize, tmpNarrowSize);
+                // console.log("foundBarcodeWidth", foundBarcodeWidth, foundWideSize, foundNarrowSize);
+                results.push({
+                    foundBarcodeWidth: foundBarcodeWidth,
+                    foundWideSize: foundWideSize,
+                    foundNarrowSize: foundNarrowSize,
+                })
+            }
+
+            //console.log("result", results);
+            // 找出結果中最接近 width 的 barcode 參數
+            let minDiffResultIndex = null;
+            let minDiff = Number.MAX_VALUE;
+            results.forEach((row, index) => {
+                const diff = width - row.foundBarcodeWidth;
+                if (diff < 0) return;
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    minDiffResultIndex = index;
+                }
+            });
+            const minDiffResult = results[minDiffResultIndex];
+            return {
+                width: width,
+                foundBarcodeWidth: minDiffResult.foundBarcodeWidth,
+                foundWideSize: minDiffResult.foundWideSize,
+                foundNarrowSize: minDiffResult.foundNarrowSize,
+            };
+        }
+        function generateCode39Barcode(text, container, width) {
+            const charMap = getCharBarMap();
+            const canvasDiv = document.createElement("div");
+            const titleDiv = document.createElement("div");
+            const canvas = document.createElement("canvas");
+            canvasDiv.style.margin = 5;
+            canvasDiv.appendChild(titleDiv);
+            canvasDiv.appendChild(canvas);
+            container.appendChild(canvasDiv);
+            const ctx = canvas.getContext("2d");
+
+            // Set canvas width and height based on screen size
+            // const width = Math.min(window.innerWidth * 0.8, 600);
+            const height = width / 5;
+            canvas.width = width;
+            canvas.height = height;
+
+            // Calculate total barcode width
+            const margin = 0;
+            const foundResult = findFitBarcodeWidth(text, width);
+            // console.log("foundResult", text, width, foundResult);
+            titleDiv.innerText = "Width: " + foundResult.width + ", Fit Width:" + foundResult.foundBarcodeWidth + ", Wide: " + foundResult.foundWideSize + ", Narrow: " + foundResult.foundNarrowSize + ", Ratio: " + foundResult.foundWideSize / foundResult.foundNarrowSize;
+
+            // Calculate bar width and height
+            const narrowBarWidth = foundResult.foundNarrowSize;
+            const wideBarWidth = foundResult.foundWideSize;
+            const barHeight = height;
+
+            // Draw barcode bars and text
+            let x = margin;
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "black";
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const charCode = charMap[char];
+                for (let j = 0; j < charCode.length; j++) {
+                    const bit = charCode[j];
+                    if (bit === "0") {
+                        x += wideBarWidth;
+                    }
+                    if (bit === "1") {
+                        x += narrowBarWidth;
+                    }
+                    if (bit === "2") {
+                        ctx.fillRect(x, margin, wideBarWidth, barHeight);
+                        x += wideBarWidth;
+                    }
+                    if (bit === "3") {
+                        ctx.fillRect(x, margin, narrowBarWidth, barHeight);
+                        x += narrowBarWidth;
+                    }
+                }
+                x += narrowBarWidth;
+            }
+        }
+    </script>
+</body>
+
+</html>
