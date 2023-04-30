@@ -25,6 +25,12 @@
             "device": "fenix7s",
         },
         {
+            "name": "Run App at fenix6xpro",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fenix6xpro",
+        },
+        {
             "name": "Run App at descentmk2",
             "request": "launch",
             "type": "monkeyc",
@@ -85,6 +91,12 @@
             "device": "venusq",
         },
         {
+            "name": "Run App at venusqm",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "venusqm",
+        },
+        {
             "name": "Run App at venusq2",
             "request": "launch",
             "type": "monkeyc",
@@ -139,10 +151,34 @@
             "device": "fr255",
         },
         {
-            "name": "Run App at fr255s",
+            "name": "Run App at fr255",
             "request": "launch",
             "type": "monkeyc",
-            "device": "fr255s",
+            "device": "fr255",
+        },
+        {
+            "name": "Run App at fr55",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr55",
+        },
+        {
+            "name": "Run App at fr255m",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr255m",
+        },
+        {
+            "name": "Run App at fr955",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr955",
+        },
+        {
+            "name": "Run App at fr945",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fr945",
         },
     ]
 }
