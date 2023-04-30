@@ -140,8 +140,8 @@
 
         function findFitBarcodeWidth(text, width) {
             let results = [];
-            // search narrow bar to wide bar from 1:2 ~ 1:4
-            for (var ratio = 3; ratio <= 4; ratio++) {
+            // search narrow bar to wide bar from 1:1.8 ~ 1:3.4
+            for (var maxRatio = 3.4; maxRatio <= 4; maxRatio += 0.1) {
                 let foundNarrowSize = 1;
                 let foundWideSize = 2;
                 let foundBarcodeWidth = getBarcodeWidth(text, foundWideSize, foundNarrowSize);
@@ -158,7 +158,7 @@
 
                     // try to add size
                     tmpWideSize++; // add wide first
-                    if (tmpNarrowSize < (tmpWideSize / ratio)) tmpNarrowSize++; // if narrow:wide below 1:3 then add narrow
+                    if ((tmpWideSize / tmpNarrowSize) > maxRatio) tmpNarrowSize++; // if narrow:wide below 1:3 then add narrow
                     //console.log("narrow", tmpNarrowSize, "wide", tmpWideSize);
                 } while (tmpBarcodeWidth < width);
                 // console.log("tmpBarcodeWidth", tmpBarcodeWidth, tmpWideSize, tmpNarrowSize);
