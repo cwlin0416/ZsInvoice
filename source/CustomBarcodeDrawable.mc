@@ -80,39 +80,37 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     if (paramPaddingTop != null) {
       paddingTop = paramPaddingTop;
     }
-    // 1:3 
-    // screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
-    // screenSizes.add(new ScreenSizeMap(160, 259, 160, 3, 1));
-    // screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
-    // screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
-    // screenSizes.add(new ScreenSizeMap(320, 419, 320, 6, 2));
-    // screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
-    // screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
-    // screenSizes.add(new ScreenSizeMap(480, 579, 480, 9, 3));
-    // screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
-    // screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
-    // screenSizes.add(new ScreenSizeMap(640, 739, 640, 12, 4));
-
-    // 1:4
     screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
     screenSizes.add(new ScreenSizeMap(160, 189, 160, 3, 1));
-    screenSizes.add(new ScreenSizeMap(190, 289, 190, 4, 1));
+    screenSizes.add(new ScreenSizeMap(190, 259, 190, 4, 1));
+    screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
     screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
     screenSizes.add(new ScreenSizeMap(320, 349, 320, 6, 2));
     screenSizes.add(new ScreenSizeMap(350, 379, 350, 7, 2));
-    screenSizes.add(new ScreenSizeMap(380, 479, 380, 8, 2));
+    screenSizes.add(new ScreenSizeMap(380, 419, 380, 8, 2));
+    screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
+    screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
     screenSizes.add(new ScreenSizeMap(480, 509, 480, 9, 3));
     screenSizes.add(new ScreenSizeMap(510, 539, 510, 10, 3));
     screenSizes.add(new ScreenSizeMap(540, 569, 540, 11, 3));
-    screenSizes.add(new ScreenSizeMap(570, 669, 570, 12, 3));
+    screenSizes.add(new ScreenSizeMap(570, 579, 570, 12, 3));
+    screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
+    screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
+    screenSizes.add(new ScreenSizeMap(640, 669, 640, 12, 4));
     screenSizes.add(new ScreenSizeMap(670, 699, 670, 13, 4));
     screenSizes.add(new ScreenSizeMap(700, 729, 700, 14, 4));
-    screenSizes.add(new ScreenSizeMap(730, 759, 730, 15, 4));
-    screenSizes.add(new ScreenSizeMap(760, 859, 760, 16, 4));
+    screenSizes.add(new ScreenSizeMap(730, 739, 730, 15, 4));
+    screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
+    screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
+    screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
+    screenSizes.add(new ScreenSizeMap(800, 859, 800, 15, 5));
     screenSizes.add(new ScreenSizeMap(860, 889, 860, 17, 5));
-    screenSizes.add(new ScreenSizeMap(890, 919, 890, 18, 5));
-    screenSizes.add(new ScreenSizeMap(920, 949, 920, 19, 5));
-    screenSizes.add(new ScreenSizeMap(950, 1000, 950, 20, 5));
+    screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
+    screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
+    screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
+    screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
+    screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
+    screenSizes.add(new ScreenSizeMap(960, 1000, 960, 18, 6));
   }
 
   function refreshBarcode() as Void {
@@ -173,7 +171,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     dc.clear();
 
     // Render barcode
-    var barPadding = 20;
+    var barPadding = 14;
     var extraGap = 0;
     var narrowLineWidth = 1;
     var wideLineWidth = getSuggestWideLineWidth(dc.getWidth()-barPadding); // Default narrow line to wide line is 1:2
