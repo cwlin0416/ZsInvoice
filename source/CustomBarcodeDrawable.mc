@@ -2,6 +2,21 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
 
+class ScreenSizeMap {
+  var minWidth as Number;
+  var maxWidth as Number;
+  var barcodeWidth as Number;
+  var wideLineWidth as Number;
+  var narrowLineWidth as Number;
+
+  function initialize(minWidth as Number, maxWidth as Number, barcodeWidth as Number, wideLineWidth as Number, narrowLineWidth as Number) {
+    me.minWidth = minWidth;
+    me.maxWidth = maxWidth;
+    me.barcodeWidth = barcodeWidth;
+    me.wideLineWidth = wideLineWidth;
+    me.narrowLineWidth = narrowLineWidth;
+  }
+}
 class CustomBarcodeDrawable extends WatchUi.Drawable {
   var barcode = "/ABC.123";
   var maxLength = 8;
@@ -54,6 +69,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   };
   var barcodes = new Array<String>[0];
   var paddingTop = 0 as Number;
+  var screenSizes = new Array<ScreenSizeMap>[0];
 
   function initialize(params as Dictionary) {
     // You should always call the parent's initializer and
@@ -64,6 +80,37 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     if (paramPaddingTop != null) {
       paddingTop = paramPaddingTop;
     }
+    screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
+    screenSizes.add(new ScreenSizeMap(160, 189, 160, 3, 1));
+    screenSizes.add(new ScreenSizeMap(190, 259, 190, 4, 1));
+    screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
+    screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
+    screenSizes.add(new ScreenSizeMap(320, 349, 320, 6, 2));
+    screenSizes.add(new ScreenSizeMap(350, 379, 350, 7, 2));
+    screenSizes.add(new ScreenSizeMap(380, 419, 380, 8, 2));
+    screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
+    screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
+    screenSizes.add(new ScreenSizeMap(480, 509, 480, 9, 3));
+    screenSizes.add(new ScreenSizeMap(510, 539, 510, 10, 3));
+    screenSizes.add(new ScreenSizeMap(540, 569, 540, 11, 3));
+    screenSizes.add(new ScreenSizeMap(570, 579, 570, 12, 3));
+    screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
+    screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
+    screenSizes.add(new ScreenSizeMap(640, 669, 640, 12, 4));
+    screenSizes.add(new ScreenSizeMap(670, 699, 670, 13, 4));
+    screenSizes.add(new ScreenSizeMap(700, 729, 700, 14, 4));
+    screenSizes.add(new ScreenSizeMap(730, 739, 730, 15, 4));
+    screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
+    screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
+    screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
+    screenSizes.add(new ScreenSizeMap(800, 859, 800, 15, 5));
+    screenSizes.add(new ScreenSizeMap(860, 889, 860, 17, 5));
+    screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
+    screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
+    screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
+    screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
+    screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
+    screenSizes.add(new ScreenSizeMap(960, 1000, 960, 18, 6));
   }
 
   function refreshBarcode() as Void {
@@ -98,6 +145,17 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   function getBarUnitWidth(screenWidth, barcodeSize, wideLineWidth, extraGap) {
     return screenWidth / calBarWidth(1, barcodeSize, wideLineWidth, extraGap);
   }
+  function getSuggestWideLineWidth(screenWidth as Number) {
+    for(var i=0; i<screenSizes.size(); i++) {
+      var screenSize = screenSizes[i] as ScreenSizeMap;
+      if (screenWidth >= screenSize.minWidth && screenWidth <= screenSize.maxWidth) {
+        System.println("Found width " + screenWidth + " between " + screenSize.minWidth + " and " + screenSize.maxWidth);
+        System.println("Suggest wideLineWidth is " + screenSize.wideLineWidth / screenSize.narrowLineWidth);
+        return screenSize.wideLineWidth / screenSize.narrowLineWidth;
+      }
+    }
+    return 2;
+  }
 
   function draw(dc as Dc) as Void {
     System.println("CustomBarcodeDrawable: draw()");
@@ -112,10 +170,10 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     dc.clear();
 
     // Render barcode
-    var barPadding = 20;
+    var barPadding = 14;
     var extraGap = 0;
     var narrowLineWidth = 1;
-    var wideLineWidth = 2; // Default narrow line to wide line is 1:2
+    var wideLineWidth = getSuggestWideLineWidth(dc.getWidth()-barPadding); // Default narrow line to wide line is 1:2
 
     var barUnitWidth = self.getBarUnitWidth(
       dc.getWidth() - barPadding,
@@ -131,39 +189,39 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     );
     var barWidth = defaultBarWidth;
 
-    // If screen size between 1 unit width 1:3 and 2 unit width 1:2 then use 1:3 to increase barcode accuracy.
-    var testWideLineWidth = 3;
-    var testExtraGap = 2;
-    var testBarWidth = self.calBarWidth(
-      1,
-      barcodes.size(),
-      testWideLineWidth,
-      testExtraGap
-    );
-    var testMinBarWidth =
-      self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
-    System.println("defaultBarWidth: " + defaultBarWidth);
-    System.println("testBarWidth: " + testBarWidth);
-    if (
-      dc.getWidth() >= testBarWidth + barPadding &&
-      dc.getWidth() < testMinBarWidth + barPadding
-    ) {
-      System.println("Use enchanced barcode");
-      wideLineWidth = testWideLineWidth;
-      extraGap = testExtraGap;
-      barUnitWidth = self.getBarUnitWidth(
-        dc.getWidth() - barPadding,
-        barcodes.size(),
-        wideLineWidth,
-        extraGap
-      );
-      barWidth = self.calBarWidth(
-        barUnitWidth,
-        barcodes.size(),
-        wideLineWidth,
-        extraGap
-      );
-    }
+    // // If screen size between 1 unit width 1:3 and 2 unit width 1:2 then use 1:3 to increase barcode accuracy.
+    // var testWideLineWidth = 3;
+    // var testExtraGap = 2;
+    // var testBarWidth = self.calBarWidth(
+    //   1,
+    //   barcodes.size(),
+    //   testWideLineWidth,
+    //   testExtraGap
+    // );
+    // var testMinBarWidth =
+    //   self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
+    // System.println("defaultBarWidth: " + defaultBarWidth);
+    // System.println("testBarWidth: " + testBarWidth);
+    // if (
+    //   dc.getWidth() >= testBarWidth + barPadding &&
+    //   dc.getWidth() < testMinBarWidth + barPadding
+    // ) {
+    //   System.println("Use enchanced barcode");
+    //   wideLineWidth = testWideLineWidth;
+    //   extraGap = testExtraGap;
+    //   barUnitWidth = self.getBarUnitWidth(
+    //     dc.getWidth() - barPadding,
+    //     barcodes.size(),
+    //     wideLineWidth,
+    //     extraGap
+    //   );
+    //   barWidth = self.calBarWidth(
+    //     barUnitWidth,
+    //     barcodes.size(),
+    //     wideLineWidth,
+    //     extraGap
+    //   );
+    // }
 
     var barHeight = Math.round(dc.getHeight() / 3.5);
 
