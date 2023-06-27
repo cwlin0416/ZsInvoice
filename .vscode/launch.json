@@ -7,6 +7,24 @@
             "device": "epix2",
         },
         {
+            "name": "Run App at epix2pro42mm",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "epix2pro42mm",
+        },
+        {
+            "name": "Run App at epix2pro47mm",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "epix2pro47mm",
+        },
+        {
+            "name": "Run App at epix2pro51mm",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "epix2pro51mm",
+        },
+        {
             "name": "Run App at fenix7x",
             "request": "launch",
             "type": "monkeyc",
@@ -23,6 +41,12 @@
             "request": "launch",
             "type": "monkeyc",
             "device": "fenix7s",
+        },
+        {
+            "name": "Run App at fenix7xpro",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "fenix7xpro",
         },
         {
             "name": "Run App at fenix6xpro",
