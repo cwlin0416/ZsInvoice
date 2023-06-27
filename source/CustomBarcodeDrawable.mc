@@ -103,14 +103,16 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
     screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
     screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
-    screenSizes.add(new ScreenSizeMap(800, 859, 800, 15, 5));
+    screenSizes.add(new ScreenSizeMap(800, 829, 800, 15, 5));
+    screenSizes.add(new ScreenSizeMap(830, 859, 830, 16, 5));
     screenSizes.add(new ScreenSizeMap(860, 889, 860, 17, 5));
     screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
     screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
     screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
     screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
     screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
-    screenSizes.add(new ScreenSizeMap(960, 1000, 960, 18, 6));
+    screenSizes.add(new ScreenSizeMap(960, 989, 960, 18, 6));
+    screenSizes.add(new ScreenSizeMap(990, 1000, 990, 19, 6));
   }
 
   function refreshBarcode() as Void {
