@@ -85,6 +85,12 @@
             "device": "instinct2s",
         },
         {
+            "name": "Run App at instinct2x",
+            "request": "launch",
+            "type": "monkeyc",
+            "device": "instinct2x",
+        },
+        {
             "name": "Run App at instinctcrossover",
             "request": "launch",
             "type": "monkeyc",
