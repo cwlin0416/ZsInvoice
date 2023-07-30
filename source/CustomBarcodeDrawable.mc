@@ -67,9 +67,9 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     'Y' => "110010110101",
     'Z' => "100110110101",
   };
-  var barcodes = new Array<String>[0];
+  var barcodes as Array<String> = new Array<String>[0];
   var paddingTop = 0 as Number;
-  var screenSizes = new Array<ScreenSizeMap>[0];
+  var screenSizes as Array<ScreenSizeMap> = new Array<ScreenSizeMap>[0];
 
   function initialize(params as Dictionary) {
     // You should always call the parent's initializer and
