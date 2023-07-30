@@ -1,214 +1,222 @@
 {
-    "configurations": [
-        {
-            "name": "Run App at epix2",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "epix2",
-        },
-        {
-            "name": "Run App at epix2pro42mm",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "epix2pro42mm",
-        },
-        {
-            "name": "Run App at epix2pro47mm",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "epix2pro47mm",
-        },
-        {
-            "name": "Run App at epix2pro51mm",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "epix2pro51mm",
-        },
-        {
-            "name": "Run App at fenix7x",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fenix7x",
-        },
-        {
-            "name": "Run App at fenix7",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fenix7",
-        },
-        {
-            "name": "Run App at fenix7s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fenix7s",
-        },
-        {
-            "name": "Run App at fenix7xpro",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fenix7xpro",
-        },
-        {
-            "name": "Run App at fenix6xpro",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fenix6xpro",
-        },
-        {
-            "name": "Run App at descentmk2",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "descentmk2",
-        },
-        {
-            "name": "Run App at descentmk2s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "descentmk2s",
-        },
-        {
-            "name": "Run App at descentg1",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "descentg1",
-        },
-        {
-            "name": "Run App at instinct2",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "instinct2",
-        },
-        {
-            "name": "Run App at instinct2s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "instinct2s",
-        },
-        {
-            "name": "Run App at instinct2x",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "instinct2x",
-        },
-        {
-            "name": "Run App at instinctcrossover",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "instinctcrossover",
-        },
-        {
-            "name": "Run App at vivoactive3",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "vivoactive3",
-        },
-        {
-            "name": "Run App at vivoactive4",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "vivoactive4",
-        },
-        {
-            "name": "Run App at vivoactive4s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "vivoactive4s",
-        },
-        {
-            "name": "Run App at venusq",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venusq",
-        },
-        {
-            "name": "Run App at venusqm",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venusqm",
-        },
-        {
-            "name": "Run App at venusq2",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venusq2",
-        },
-        {
-            "name": "Run App at venusq2m",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venusq2m",
-        },
-        {
-            "name": "Run App at venu2",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venu2",
-        },
-        {
-            "name": "Run App at venu2s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "venu2s",
-        },
-        {
-            "name": "Run App at fr235",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr235",
-        },
-        {
-            "name": "Run App at fr265",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr265",
-        },
-        {
-            "name": "Run App at fr265s",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr265s",
-        },
-        {
-            "name": "Run App at fr965",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr965",
-        },
-        {
-            "name": "Run App at fr255",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr255",
-        },
-        {
-            "name": "Run App at fr255",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr255",
-        },
-        {
-            "name": "Run App at fr55",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr55",
-        },
-        {
-            "name": "Run App at fr255m",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr255m",
-        },
-        {
-            "name": "Run App at fr955",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr955",
-        },
-        {
-            "name": "Run App at fr945",
-            "request": "launch",
-            "type": "monkeyc",
-            "device": "fr945",
-        },
-    ]
+  "configurations": [
+    
+    {
+      "type": "monkeyc",
+      "request": "launch",
+      "name": "Run App",
+      "stopAtLaunch": false,
+      "device": "${command:GetTargetDevice}"
+    },
+    {
+      "name": "Run App at epix2",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "epix2"
+    },
+    {
+      "name": "Run App at epix2pro42mm",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "epix2pro42mm"
+    },
+    {
+      "name": "Run App at epix2pro47mm",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "epix2pro47mm"
+    },
+    {
+      "name": "Run App at epix2pro51mm",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "epix2pro51mm"
+    },
+    {
+      "name": "Run App at fenix7x",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fenix7x"
+    },
+    {
+      "name": "Run App at fenix7",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fenix7"
+    },
+    {
+      "name": "Run App at fenix7s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fenix7s"
+    },
+    {
+      "name": "Run App at fenix7xpro",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fenix7xpro"
+    },
+    {
+      "name": "Run App at fenix6xpro",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fenix6xpro"
+    },
+    {
+      "name": "Run App at descentmk2",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "descentmk2"
+    },
+    {
+      "name": "Run App at descentmk2s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "descentmk2s"
+    },
+    {
+      "name": "Run App at descentg1",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "descentg1"
+    },
+    {
+      "name": "Run App at instinct2",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "instinct2"
+    },
+    {
+      "name": "Run App at instinct2s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "instinct2s"
+    },
+    {
+      "name": "Run App at instinct2x",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "instinct2x"
+    },
+    {
+      "name": "Run App at instinctcrossover",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "instinctcrossover"
+    },
+    {
+      "name": "Run App at vivoactive3",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "vivoactive3"
+    },
+    {
+      "name": "Run App at vivoactive4",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "vivoactive4"
+    },
+    {
+      "name": "Run App at vivoactive4s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "vivoactive4s"
+    },
+    {
+      "name": "Run App at venusq",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venusq"
+    },
+    {
+      "name": "Run App at venusqm",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venusqm"
+    },
+    {
+      "name": "Run App at venusq2",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venusq2"
+    },
+    {
+      "name": "Run App at venusq2m",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venusq2m"
+    },
+    {
+      "name": "Run App at venu2",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venu2"
+    },
+    {
+      "name": "Run App at venu2s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venu2s"
+    },
+    {
+      "name": "Run App at fr235",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr235"
+    },
+    {
+      "name": "Run App at fr265",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr265"
+    },
+    {
+      "name": "Run App at fr265s",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr265s"
+    },
+    {
+      "name": "Run App at fr965",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr965"
+    },
+    {
+      "name": "Run App at fr255",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr255"
+    },
+    {
+      "name": "Run App at fr255",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr255"
+    },
+    {
+      "name": "Run App at fr55",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr55"
+    },
+    {
+      "name": "Run App at fr255m",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr255m"
+    },
+    {
+      "name": "Run App at fr955",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr955"
+    },
+    {
+      "name": "Run App at fr945",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "fr945"
+    }
+  ]
 }
