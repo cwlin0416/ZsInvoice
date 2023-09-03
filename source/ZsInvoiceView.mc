@@ -3,6 +3,8 @@ import Toybox.WatchUi;
 using Toybox.Timer;
 
 class ZsInvoiceView extends WatchUi.View {
+  var maxDuration = 40;
+  var currentDuration = 0;
   var myTimer = new Timer.Timer();
   var isBackLightOn = false;
   function initialize() {
@@ -18,14 +20,30 @@ class ZsInvoiceView extends WatchUi.View {
     System.println("Backlight off");
     Attention.backlight(false);
     isBackLightOn = false;
+    currentDuration = 0;
   }
 
   function tuneOnBacklight() {
-    Attention.backlight(1.0);
     System.println("Backlight countdown on");
     isBackLightOn = true;
     myTimer.stop();
-    myTimer.start(method(:tuneOffBacklight), 25000, false);
+    currentDuration = 0;
+    turnOnLoop();
+  }
+  function turnOnLoop() {
+    System.println("currentDuration sec: " + currentDuration);
+    if (currentDuration < maxDuration) {
+      try {
+        Attention.backlight(1.0);
+        myTimer.start(method(:turnOnLoop), 1000, false);
+      } catch (ex) {
+        tuneOffBacklight();
+        System.println(ex.getErrorMessage());
+      }
+    } else {
+      tuneOffBacklight();
+    }
+    currentDuration++;
   }
 
   // Called when this View is brought to the foreground. Restore
