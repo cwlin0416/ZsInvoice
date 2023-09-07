@@ -59,6 +59,5 @@ class ZsInvoiceView extends WatchUi.View {
   // memory.
   function onHide() as Void {
     tuneOffBacklight();
-    System.exit();
   }
 }
