@@ -159,6 +159,12 @@
       "device": "venu2s"
     },
     {
+      "name": "Run App at venu3",
+      "request": "launch",
+      "type": "monkeyc",
+      "device": "venu3"
+    },
+    {
       "name": "Run App at fr235",
       "request": "launch",
       "type": "monkeyc",

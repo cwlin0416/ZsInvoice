@@ -3,18 +3,14 @@ import Toybox.WatchUi;
 using Toybox.Timer;
 
 class ZsInvoiceView extends WatchUi.View {
-  var maxDuration = 40;
+  var maxDuration = 25000;
   var currentDuration = 0;
   var myTimer = new Timer.Timer();
   var isBackLightOn = false;
-  function initialize() {
-    View.initialize();
-  }
+  function initialize() { View.initialize(); }
 
   // Load your resources here
-  function onLayout(dc as Dc) as Void {
-    setLayout(Rez.Layouts.MainLayout(dc));
-  }
+  function onLayout(dc as Dc) as Void { setLayout(Rez.Layouts.MainLayout(dc)); }
 
   function tuneOffBacklight() {
     System.println("Backlight off");
@@ -31,11 +27,12 @@ class ZsInvoiceView extends WatchUi.View {
     turnOnLoop();
   }
   function turnOnLoop() {
+    var interval = 500;
     System.println("currentDuration sec: " + currentDuration);
-    if (currentDuration < maxDuration) {
+    if (isBackLightOn && currentDuration < maxDuration) {
       try {
         Attention.backlight(1.0);
-        myTimer.start(method(:turnOnLoop), 1000, false);
+        myTimer.start(method( : turnOnLoop), interval, false);
       } catch (ex) {
         tuneOffBacklight();
         System.println(ex.getErrorMessage());
@@ -43,15 +40,13 @@ class ZsInvoiceView extends WatchUi.View {
     } else {
       tuneOffBacklight();
     }
-    currentDuration++;
+    currentDuration += interval;
   }
 
   // Called when this View is brought to the foreground. Restore
   // the state of this View and prepare it to be shown. This includes
   // loading resources into memory.
-  function onShow() as Void {
-    tuneOnBacklight();
-  }
+  function onShow() as Void { tuneOnBacklight(); }
 
   // Update the view
   function onUpdate(dc as Dc) as Void {
@@ -64,5 +59,6 @@ class ZsInvoiceView extends WatchUi.View {
   // memory.
   function onHide() as Void {
     tuneOffBacklight();
+    System.exit();
   }
 }
