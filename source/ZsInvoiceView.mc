@@ -4,7 +4,7 @@ using Toybox.Timer;
 
 class ZsInvoiceView extends WatchUi.View {
   var maxDuration = 25000;
-  var interval = 25000;
+  var interval = 250;
   var currentDuration = 0;
   var myTimer = new Timer.Timer();
   var isBackLightOn = false;
