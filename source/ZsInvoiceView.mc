@@ -32,7 +32,7 @@ class ZsInvoiceView extends WatchUi.View {
     if (isBackLightOn && currentDuration < maxDuration) {
       try {
         Attention.backlight(1.0);
-        myTimer.start(method( : turnOnLoop), interval, false);
+        myTimer.start(method(:turnOnLoop), interval, false);
       } catch (ex) {
         tuneOffBacklight();
         System.println(ex.getErrorMessage());
@@ -57,7 +57,5 @@ class ZsInvoiceView extends WatchUi.View {
   // Called when this View is removed from the screen. Save the
   // state of this View here. This includes freeing resources from
   // memory.
-  function onHide() as Void {
-    tuneOffBacklight();
-  }
+  function onHide() as Void { tuneOffBacklight(); }
 }
