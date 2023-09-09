@@ -4,6 +4,7 @@ using Toybox.Timer;
 
 class ZsInvoiceView extends WatchUi.View {
   var maxDuration = 25000;
+  var interval = 25000;
   var currentDuration = 0;
   var myTimer = new Timer.Timer();
   var isBackLightOn = false;
@@ -27,7 +28,6 @@ class ZsInvoiceView extends WatchUi.View {
     turnOnLoop();
   }
   function turnOnLoop() {
-    var interval = 500;
     System.println("currentDuration sec: " + currentDuration);
     if (isBackLightOn && currentDuration < maxDuration) {
       try {
