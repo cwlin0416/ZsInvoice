@@ -15,7 +15,11 @@ class ZsInvoiceView extends WatchUi.View {
 
   function tuneOffBacklight() {
     System.println("Backlight off");
-    Attention.backlight(false);
+    try {
+      Attention.backlight(false);
+    } catch (ex) {
+      System.println(ex.getErrorMessage());
+    }
     isBackLightOn = false;
     currentDuration = 0;
   }
