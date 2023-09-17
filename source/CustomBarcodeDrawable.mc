@@ -10,16 +10,16 @@ class ScreenSizeMap {
   var narrowLineWidth as Number;
 
   function initialize(minWidth as Number, maxWidth as Number, barcodeWidth as Number, wideLineWidth as Number, narrowLineWidth as Number) {
-    me.minWidth = minWidth;
-    me.maxWidth = maxWidth;
-    me.barcodeWidth = barcodeWidth;
-    me.wideLineWidth = wideLineWidth;
-    me.narrowLineWidth = narrowLineWidth;
+    self.minWidth = minWidth;
+    self.maxWidth = maxWidth;
+    self.barcodeWidth = barcodeWidth;
+    self.wideLineWidth = wideLineWidth;
+    self.narrowLineWidth = narrowLineWidth;
   }
 }
 class CustomBarcodeDrawable extends WatchUi.Drawable {
-  var barcode = "/ABC.123";
-  var maxLength = 8;
+  var barcode = "/ABC.123" as String;
+  var maxLength = 8 as Number;
   var charMap as Dictionary<Char, String> = {
     // map each character to it's pattern
     ' ' => "100110101101",
@@ -78,70 +78,70 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     Drawable.initialize(params);
     var paramPaddingTop = params.get(:paddingTop) as Number;
     if (paramPaddingTop != null) {
-      paddingTop = paramPaddingTop;
+      self.paddingTop = paramPaddingTop;
     }
-    screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
-    screenSizes.add(new ScreenSizeMap(160, 189, 160, 3, 1));
-    screenSizes.add(new ScreenSizeMap(190, 259, 190, 4, 1));
-    screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
-    screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
-    screenSizes.add(new ScreenSizeMap(320, 349, 320, 6, 2));
-    screenSizes.add(new ScreenSizeMap(350, 379, 350, 7, 2));
-    screenSizes.add(new ScreenSizeMap(380, 419, 380, 8, 2));
-    screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
-    screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
-    screenSizes.add(new ScreenSizeMap(480, 509, 480, 9, 3));
-    screenSizes.add(new ScreenSizeMap(510, 539, 510, 10, 3));
-    screenSizes.add(new ScreenSizeMap(540, 569, 540, 11, 3));
-    screenSizes.add(new ScreenSizeMap(570, 579, 570, 12, 3));
-    screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
-    screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
-    screenSizes.add(new ScreenSizeMap(640, 669, 640, 12, 4));
-    screenSizes.add(new ScreenSizeMap(670, 699, 670, 13, 4));
-    screenSizes.add(new ScreenSizeMap(700, 729, 700, 14, 4));
-    screenSizes.add(new ScreenSizeMap(730, 739, 730, 15, 4));
-    screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
-    screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
-    screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
-    screenSizes.add(new ScreenSizeMap(800, 829, 800, 15, 5));
-    screenSizes.add(new ScreenSizeMap(830, 859, 830, 16, 5));
-    screenSizes.add(new ScreenSizeMap(860, 889, 860, 17, 5));
-    screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
-    screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
-    screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
-    screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
-    screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
-    screenSizes.add(new ScreenSizeMap(960, 989, 960, 18, 6));
-    screenSizes.add(new ScreenSizeMap(990, 1000, 990, 19, 6));
+    self.screenSizes.add(new ScreenSizeMap(130, 159, 130, 2, 1));
+    self.screenSizes.add(new ScreenSizeMap(160, 189, 160, 3, 1));
+    self.screenSizes.add(new ScreenSizeMap(190, 259, 190, 4, 1));
+    self.screenSizes.add(new ScreenSizeMap(260, 289, 260, 4, 2));
+    self.screenSizes.add(new ScreenSizeMap(290, 319, 290, 5, 2));
+    self.screenSizes.add(new ScreenSizeMap(320, 349, 320, 6, 2));
+    self.screenSizes.add(new ScreenSizeMap(350, 379, 350, 7, 2));
+    self.screenSizes.add(new ScreenSizeMap(380, 419, 380, 8, 2));
+    self.screenSizes.add(new ScreenSizeMap(420, 449, 420, 7, 3));
+    self.screenSizes.add(new ScreenSizeMap(450, 479, 450, 8, 3));
+    self.screenSizes.add(new ScreenSizeMap(480, 509, 480, 9, 3));
+    self.screenSizes.add(new ScreenSizeMap(510, 539, 510, 10, 3));
+    self.screenSizes.add(new ScreenSizeMap(540, 569, 540, 11, 3));
+    self.screenSizes.add(new ScreenSizeMap(570, 579, 570, 12, 3));
+    self.screenSizes.add(new ScreenSizeMap(580, 609, 580, 10, 4));
+    self.screenSizes.add(new ScreenSizeMap(610, 639, 610, 11, 4));
+    self.screenSizes.add(new ScreenSizeMap(640, 669, 640, 12, 4));
+    self.screenSizes.add(new ScreenSizeMap(670, 699, 670, 13, 4));
+    self.screenSizes.add(new ScreenSizeMap(700, 729, 700, 14, 4));
+    self.screenSizes.add(new ScreenSizeMap(730, 739, 730, 15, 4));
+    self.screenSizes.add(new ScreenSizeMap(740, 759, 740, 13, 5));
+    self.screenSizes.add(new ScreenSizeMap(760, 769, 760, 16, 4));
+    self.screenSizes.add(new ScreenSizeMap(770, 799, 770, 14, 5));
+    self.screenSizes.add(new ScreenSizeMap(800, 829, 800, 15, 5));
+    self.screenSizes.add(new ScreenSizeMap(830, 859, 830, 16, 5));
+    self.screenSizes.add(new ScreenSizeMap(860, 889, 860, 17, 5));
+    self.screenSizes.add(new ScreenSizeMap(890, 899, 890, 18, 5));
+    self.screenSizes.add(new ScreenSizeMap(900, 919, 900, 16, 6));
+    self.screenSizes.add(new ScreenSizeMap(920, 929, 920, 19, 5));
+    self.screenSizes.add(new ScreenSizeMap(930, 949, 930, 17, 6));
+    self.screenSizes.add(new ScreenSizeMap(950, 959, 950, 20, 5));
+    self.screenSizes.add(new ScreenSizeMap(960, 989, 960, 18, 6));
+    self.screenSizes.add(new ScreenSizeMap(990, 1000, 990, 19, 6));
   }
 
   function refreshBarcode() as Void {
     try {
       if (Application has :Properties) {
-        barcode = Application.Properties.getValue("invoiceBarcode");
+        self.barcode = Application.Properties.getValue("invoiceBarcode");
       } else {
         var app = Application.getApp();
-        barcode = app.getProperty("invoiceBarcode");
+       self.barcode = app.getProperty("invoiceBarcode");
       }
     } catch(ex) {
       System.println("Exception: " + ex.getErrorMessage());
-      barcode = "/ABC.124";
+      self.barcode = "/ABC.124";
     }
-    var barcodeChars = barcode.toUpper().toCharArray() as Array<Char>;
-    barcodes = new Array<String>[0]; // build you data array
-    var startEndChar = charMap['*'];
-    barcodes.add(startEndChar); // Code 39 barcodes start with a *
+    var barcodeChars = self.barcode.toUpper().toCharArray() as Array<Char>;
+    self.barcodes = new Array<String>[0]; // build you data array
+    var startEndChar = self.charMap['*'];
+    self.barcodes.add(startEndChar); // Code 39 barcodes start with a *
     for (var i = 0; i < barcodeChars.size(); i++) {
-      var barcodeChar = barcodeChars[i] as Char;
-      var result = charMap[barcodeChar] as String?; //<-- look up for each character
+      var barcodeChar = barcodeChars[i];
+      var result = self.charMap[barcodeChar] as String?; //<-- look up for each character
       // System.print(barcodeChar);
       // System.print(", ");
       // System.println(result);
-      if (result != null && barcodes.size() < maxLength + 1) {
-        barcodes.add(result);
+      if (result != null && self.barcodes.size() < self.maxLength + 1) {
+        self.barcodes.add(result);
       }
     }
-    barcodes.add(startEndChar); // Code 39 barcodes end with a *
+    self.barcodes.add(startEndChar); // Code 39 barcodes end with a *
   }
 
   function calBarWidth(barUnitWidth, barcodeSize, wideLineWidth, extraGap) {
@@ -151,11 +151,11 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     return barUnitWidth * barcodeSize * (charBarWidth + minGap + extraGap);
   }
   function getBarUnitWidth(screenWidth, barcodeSize, wideLineWidth, extraGap) {
-    return screenWidth / calBarWidth(1, barcodeSize, wideLineWidth, extraGap);
+    return screenWidth / self.calBarWidth(1, barcodeSize, wideLineWidth, extraGap);
   }
   function getSuggestWideLineWidth(screenWidth as Number) {
-    for(var i=0; i<screenSizes.size(); i++) {
-      var screenSize = screenSizes[i] as ScreenSizeMap;
+    for(var i=0; i<self.screenSizes.size(); i++) {
+      var screenSize = self.screenSizes[i] as ScreenSizeMap;
       if (screenWidth >= screenSize.minWidth && screenWidth <= screenSize.maxWidth) {
         System.println("Found width " + screenWidth + " between " + screenSize.minWidth + " and " + screenSize.maxWidth);
         System.println("Suggest wideLineWidth is " + screenSize.wideLineWidth / screenSize.narrowLineWidth);
@@ -170,7 +170,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     System.println("Height: " + dc.getHeight());
     System.println("Weight: " + dc.getWidth());
 
-    refreshBarcode();
+    self.refreshBarcode();
 
     // Background Color
     //dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
@@ -181,17 +181,17 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     var barPadding = 14;
     var extraGap = 0;
     var narrowLineWidth = 1;
-    var wideLineWidth = getSuggestWideLineWidth(dc.getWidth()-barPadding); // Default narrow line to wide line is 1:2
+    var wideLineWidth = self.getSuggestWideLineWidth(dc.getWidth()-barPadding); // Default narrow line to wide line is 1:2
 
     var barUnitWidth = self.getBarUnitWidth(
       dc.getWidth() - barPadding,
-      barcodes.size(),
+      self.barcodes.size(),
       wideLineWidth,
       extraGap
     );
     var defaultBarWidth = self.calBarWidth(
       barUnitWidth,
-      barcodes.size(),
+      self.barcodes.size(),
       wideLineWidth,
       extraGap
     );
@@ -202,12 +202,12 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     // var testExtraGap = 2;
     // var testBarWidth = self.calBarWidth(
     //   1,
-    //   barcodes.size(),
+    //   self.barcodes.size(),
     //   testWideLineWidth,
     //   testExtraGap
     // );
     // var testMinBarWidth =
-    //   self.calBarWidth(1, barcodes.size(), wideLineWidth, extraGap) * 2;
+    //   self.calBarWidth(1, self.barcodes.size(), wideLineWidth, extraGap) * 2;
     // System.println("defaultBarWidth: " + defaultBarWidth);
     // System.println("testBarWidth: " + testBarWidth);
     // if (
@@ -219,13 +219,13 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     //   extraGap = testExtraGap;
     //   barUnitWidth = self.getBarUnitWidth(
     //     dc.getWidth() - barPadding,
-    //     barcodes.size(),
+    //     self.barcodes.size(),
     //     wideLineWidth,
     //     extraGap
     //   );
     //   barWidth = self.calBarWidth(
     //     barUnitWidth,
-    //     barcodes.size(),
+    //     self.barcodes.size(),
     //     wideLineWidth,
     //     extraGap
     //   );
@@ -235,9 +235,9 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
 
     System.println("barUnitWidth: " + barUnitWidth);
     System.println("barWidth: " + barWidth);
-    System.println("barcodes Size: " + barcodes.size());
+    System.println("barcodes Size: " + self.barcodes.size());
 
-    var top = (dc.getHeight() - barHeight) / 2 + paddingTop; // Vertical Center
+    var top = (dc.getHeight() - barHeight) / 2 + self.paddingTop; // Vertical Center
     var left = (dc.getWidth() - barWidth) / 2; // Horizontal Center
     var shift = left;
 
@@ -245,7 +245,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       dc.getWidth() / 2,
       top + barHeight + 10,
       Graphics.FONT_SYSTEM_XTINY,
-      barcode.substring(0, maxLength),
+      self.barcode.substring(0, self.maxLength),
       Graphics.TEXT_JUSTIFY_CENTER
     );
 
@@ -261,10 +261,10 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
       dc.setAntiAlias(false);
     }
     dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
-    System.println("Size: " + barcodes.size());
-    for (var i = 0; i < barcodes.size(); i++) {
-      // System.println(barcodes[i]);
-      var lines = barcodes[i].toCharArray() as Array<Char>;
+    System.println("Size: " + self.barcodes.size());
+    for (var i = 0; i < self.barcodes.size(); i++) {
+      // System.println(self.barcodes[i]);
+      var lines = self.barcodes[i].toCharArray() as Array<Char>;
       for (var j = 0; j < lines.size(); j++) {
         var isBlank = lines[j] == '0';
         var isWideLine =
