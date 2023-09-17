@@ -116,20 +116,25 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   }
 
   function refreshBarcode() as Void {
-    var barcode;
-    if (Application has :Properties) {
-      barcode = Application.Properties.getValue("invoiceBarcode");
-    } else {
-      var app = Application.getApp();
-      barcode = app.getProperty("invoiceBarcode");
+    try {
+      if (Application has :Properties) {
+        barcode = Application.Properties.getValue("invoiceBarcode");
+      } else {
+        var app = Application.getApp();
+        barcode = app.getProperty("invoiceBarcode");
+      }
+    } catch(ex) {
+      System.println("Exception: " + ex.getErrorMessage());
+      barcode = "/ABC.124";
     }
-    var barcodeChars = barcode.toUpper().toCharArray();
+    var barcodeChars = barcode.toUpper().toCharArray() as Array<Char>;
     barcodes = new Array<String>[0]; // build you data array
     var startEndChar = charMap['*'];
     barcodes.add(startEndChar); // Code 39 barcodes start with a *
     for (var i = 0; i < barcodeChars.size(); i++) {
-      var result = charMap[barcodeChars[i]]; //<-- look up for each character
-      // System.print(barcodeChars[i]);
+      var barcodeChar = barcodeChars[i] as Char;
+      var result = charMap[barcodeChar] as String?; //<-- look up for each character
+      // System.print(barcodeChar);
       // System.print(", ");
       // System.println(result);
       if (result != null && barcodes.size() < maxLength + 1) {
