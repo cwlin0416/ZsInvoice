@@ -1,10 +1,12 @@
 import Toybox.WatchUi;
 import Toybox.Graphics;
 
+(:glance)
 class ZsInvoiceGlanceView extends WatchUi.GlanceView {
   var title = null;
   function initialize() {
     GlanceView.initialize();
+    // https://forums.garmin.com/developer/connect-iq/f/discussion/231560/glances-any-example-in-sdk-strange-error-in-simulator
     title = WatchUi.loadResource(Rez.Strings.title);
     System.println("Text: " + title);
   }

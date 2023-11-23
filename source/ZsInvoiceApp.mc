@@ -2,6 +2,7 @@ import Toybox.Application;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
+(:glance)
 class ZsInvoiceApp extends Application.AppBase {
   var barcodeView;
   function initialize() {
