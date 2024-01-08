@@ -3,8 +3,8 @@ import Toybox.WatchUi;
 using Toybox.Timer;
 
 class ZsInvoiceView extends WatchUi.View {
-  var maxDuration = 25000;
-  var interval = 25000;
+  var maxDuration = 24000;
+  var interval = 4000;
   var currentDuration = 0;
   var myTimer = new Timer.Timer();
   var isBackLightOn = false;
@@ -16,7 +16,7 @@ class ZsInvoiceView extends WatchUi.View {
   function tuneOffBacklight() {
     System.println("Backlight off");
     try {
-      Attention.backlight(false);
+      Attention.backlight(true);
     } catch (ex) {
       System.println(ex.getErrorMessage());
     }
@@ -36,9 +36,9 @@ class ZsInvoiceView extends WatchUi.View {
     if (self.isBackLightOn && self.currentDuration < self.maxDuration) {
       try {
         Attention.backlight(1.0);
-        self.myTimer.start(method(:turnOnLoop), self.interval, false);
+        var turnOnLoopCallback = new Lang.Method(self, :turnOnLoop);
+        self.myTimer.start(turnOnLoopCallback, self.interval, false);
       } catch (ex) {
-        tuneOffBacklight();
         System.println(ex.getErrorMessage());
       }
     } else {
