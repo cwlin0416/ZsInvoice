@@ -20,23 +20,23 @@ class ZsInvoiceView extends WatchUi.View {
     } catch (ex) {
       System.println(ex.getErrorMessage());
     }
-    isBackLightOn = false;
-    currentDuration = 0;
+    self.isBackLightOn = false;
+    self.currentDuration = 0;
   }
 
   function tuneOnBacklight() {
     System.println("Backlight countdown on");
-    isBackLightOn = true;
-    myTimer.stop();
-    currentDuration = 0;
+    self.isBackLightOn = true;
+    self.myTimer.stop();
+    self.currentDuration = 0;
     turnOnLoop();
   }
   function turnOnLoop() {
     System.println("currentDuration sec: " + currentDuration);
-    if (isBackLightOn && currentDuration < maxDuration) {
+    if (self.isBackLightOn && self.currentDuration < self.maxDuration) {
       try {
         Attention.backlight(1.0);
-        myTimer.start(method(:turnOnLoop), interval, false);
+        self.myTimer.start(method(:turnOnLoop), self.interval, false);
       } catch (ex) {
         tuneOffBacklight();
         System.println(ex.getErrorMessage());
@@ -44,7 +44,7 @@ class ZsInvoiceView extends WatchUi.View {
     } else {
       tuneOffBacklight();
     }
-    currentDuration += interval;
+    self.currentDuration += self.interval;
   }
 
   // Called when this View is brought to the foreground. Restore
