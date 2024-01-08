@@ -117,12 +117,7 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
 
   function refreshBarcode() as Void {
     try {
-      if (Application has :Properties) {
-        self.barcode = Application.Properties.getValue("invoiceBarcode");
-      } else {
-        var app = Application.getApp();
-       self.barcode = app.getProperty("invoiceBarcode");
-      }
+      self.barcode = Application.Properties.getValue("invoiceBarcode");
     } catch(ex) {
       System.println("Exception: " + ex.getErrorMessage());
       self.barcode = "/ABC.124";
