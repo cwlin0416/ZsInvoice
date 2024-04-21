@@ -21,20 +21,14 @@ class ZsInvoiceApp extends Application.AppBase {
   }
 
   // Return the initial view of your application here
-  function getInitialView() as Array<Views or InputDelegates>? {
+  function getInitialView() as [ WatchUi.Views ] or [ WatchUi.Views, WatchUi.InputDelegates ] {
     var view = new ZsInvoiceView();
     var delegate = new ZsInvoiceDelegate(view); 
-    return (
-      [view, delegate] as
-      Array<Views or InputDelegates>
-    );
+    return [view, delegate];
   }
 
-  function getGlanceView() {
-    return (
-      [new ZsInvoiceGlanceView(), new ZsInvoiceGlanceViewDelegate()] as
-      Array<GlanceView or GlanceViewDelegate>
-    );
+  function getGlanceView() as [ WatchUi.GlanceView ] or [ WatchUi.GlanceView, WatchUi.GlanceViewDelegate ] or Null {
+    return [new ZsInvoiceGlanceView(), new ZsInvoiceGlanceViewDelegate()];
   }
 }
 
