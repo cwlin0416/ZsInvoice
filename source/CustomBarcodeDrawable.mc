@@ -116,11 +116,11 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
   }
 
   function refreshBarcode() as Void {
+    self.barcode = "/ABC.124";
     try {
       self.barcode = Application.Properties.getValue("invoiceBarcode");
     } catch(ex) {
       System.println("Exception: " + ex.getErrorMessage());
-      self.barcode = "/ABC.124";
     }
     var barcodeChars = self.barcode.toUpper().toCharArray() as Array<Char>;
     self.barcodes = new Array<String>[0]; // build you data array
@@ -149,6 +149,9 @@ class CustomBarcodeDrawable extends WatchUi.Drawable {
     return screenWidth / self.calBarWidth(1, barcodeSize, wideLineWidth, extraGap);
   }
   function getSuggestWideLineWidth(screenWidth as Number) {
+    if (self.screenSizes.size() <= 0) {
+      return 2;
+    }
     for(var i=0; i<self.screenSizes.size(); i++) {
       var screenSize = self.screenSizes[i] as ScreenSizeMap;
       if (screenWidth >= screenSize.minWidth && screenWidth <= screenSize.maxWidth) {
