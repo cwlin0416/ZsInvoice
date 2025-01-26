@@ -12,11 +12,15 @@ class ZsInvoiceDelegate extends WatchUi.BehaviorDelegate {
 
   function onMenu() as Boolean {
     System.println("onMenu");
-    WatchUi.pushView(
-      new Rez.Menus.MainMenu(),
-      new ZsInvoiceMenuDelegate(),
-      WatchUi.SLIDE_UP
-    );
+    try {
+      WatchUi.pushView(
+        new Rez.Menus.MainMenu(),
+        new ZsInvoiceMenuDelegate(),
+        WatchUi.SLIDE_UP
+      );
+    } catch (ex) {
+      System.println("ZsInvoiceDelegate Exception: " + ex.getErrorMessage());
+    }
     return true;
   }
 
